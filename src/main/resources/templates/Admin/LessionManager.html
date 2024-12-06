@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="Layout/LayoutAdmin :: layoutadmin">
+<head>
+    <meta charset="UTF-8">
+    <title>LessionManager</title>
+    <th:block th:fragment="otherCss">
+    </th:block>
+</head>
+<body>
+<main th:fragment="contentadmin">
+    <div class="app-content"> <!--begin::Container-->
+        <div class="container-fluid"> <!--begin::Row-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h3 class="card-title">Danh sách courses</h3>
+                        </div> <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="" style="margin: 10px">
+                                <a th:href="@{/admin/lession/save1}" class="btn btn-success">Thêm mới</a>
+                            </div>
+
+                            <!-- Tìm kiếm danh mục -->
+                            <div style="margin: 10px">
+                                <form th:action="@{/admin/lession/le}" method="get">
+                                    <h4 class="col-form-label">Tìm kiếm danh mục</h4>
+                                    <input type="text" name="s" class="form-control" style="margin: 10px" th:value="${s}">
+                                    <button class="btn btn-primary">Tìm kiếm</button>
+                                </form>
+                            </div>
+                            <table class="table table-bordered" style="margin: 10px">
+                                <thead>
+                                <tr>
+                                    <th>Tên bài học</th>
+                                    <th>Video bài học</th>
+                                    <th>Khóa học</th>
+                                    <th>Học phần</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="l : ${lession}" class="align-middle">
+                                    <td th:text="${l.name}"></td>
+                                    <td>
+                                        <video width="250" height="200" controls>
+                                            <source th:src="${l.path}" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </td>
+                                    <td th:text="${l.courseByCourseId != null ? l.courseByCourseId.name : 'Chưa có danh mục'}"></td>
+                                    <td th:text="${l.coursePartByPartId != null ? l.coursePartByPartId.name : 'Chưa có danh mục'}"></td>
+                                    <td class="d-flex">
+                                        <a th:href="@{/admin/lession/edit/{id}(id=${l.id})}" class="btn btn-light btn-sm me-2">Sửa</a>
+                                        <a th:href="@{/admin/lession/delete/{id}(id=${l.id})}" class="btn btn-light btn-sm">Xóa</a>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div> <!-- /.card-body -->
+                        <div class="card-footer clearfix">
+                            <ul class="pagination pagination-sm m-0 float-end">
+                                <li th:each="i: ${#numbers.sequence(1, totalPages)}" class="page-item">
+                                    <a class="page-link" th:href="@{/admin/coursepart/pa(page=${i}, s=${s})}" th:text="${i}"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div> <!--end::Row-->
+        </div> <!--end::Container-->
+    </div>
+</main>
+
+<th:block th:fragment="otherScripts">
+</th:block>
+</body>
+</html>

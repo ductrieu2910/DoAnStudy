@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="Layout/LayoutAdmin :: layoutadmin">
+<head>
+    <meta charset="UTF-8">
+    <title>EditCoursePart</title>
+    <th:block th:fragment="otherCss">
+    </th:block>
+</head>
+<body>
+<main th:fragment="contentadmin">
+        <div class="form-container col-sm-6">
+            <button id="btnCloseForm" class="close-button" onclick="closeForm()">X</button>
+            <h1>Sửa học phần khóa học</h1>
+            <form th:action="@{/admin/coursepart/save}" th:object="${newcoursepart}" method="post">
+                <input th:field="*{id}" type="hidden">
+                <div class="row mb-3">
+                    <label for="namecoursepart" class="col-form-label">Tên học phần</label>
+                    <input type="text" th:field="*{name}" id="namecoursepart" class="form-control" required />
+                </div>
+                <div class="row mb-3">
+                    <label for="coursep" class="col-form-label">Khóa học</label>
+                    <select th:field="*{courseByCourseId.id}" id="coursep" class="form-control">
+                        <option value="">Chọn danh mục học phần</option>
+                        <th:block th:each="course: ${courseEntityList}">
+                            <option th:value="${course.id}" th:text="${course.name}"></option>
+                        </th:block>
+                    </select>
+                </div>
+                <!-- Nút Lưu -->
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeForm()">Hủy</button>
+                </div>
+            </form>
+        </div>
+</main>
+<th:block th:fragment="otherScripts">
+</th:block>
+</body>
+</html>

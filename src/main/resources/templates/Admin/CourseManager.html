@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="Layout/LayoutAdmin :: layoutadmin">
+<head>
+    <meta charset="UTF-8">
+    <title>CoursesManager</title>
+    <th:block th:fragment="otherCss">
+    </th:block>
+</head>
+<body>
+<main th:fragment="contentadmin">
+    <div class="app-content"> <!--begin::Container-->
+        <div class="container-fluid"> <!--begin::Row-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h3 class="card-title" th:text="${title}"></h3>
+                        </div> <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="" style="margin: 10px">
+                                <a  th:href="@{/admin/course/save1}"  class="btn btn-success">Thêm mới</a>
+                            </div>
+                            <div>
+                                <form th:action="@{/admin/course/co}" method="get">
+                                    <H2  class="col-sm-2 col-form-label" style="margin: 10px">Tìm kiếm danh mục </H2>
+                                    <input type="text" name="s" class="form-control" style="margin: 10px" th:value="${s}">
+                                    <button class="btn btn-primary" style="margin: 10px">Tìm kiếm</button>
+                                </form>
+                            </div>
+                            <table class="table table-bordered" style="margin: 10px">
+                                <thead>
+                                <tr>
+                                    <th>Tên khóa học</th>
+                                    <th>Ảnh khóa học</th>
+                                    <th>Danh mục</th>
+                                    <th>Giá</th>
+                                    <th>Sale</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="p : ${courses}" class="align-middle">
+                                    <td th:text="${p.name}"></td>
+                                    <td>
+                                        <!-- Hiển thị ảnh khóa học từ trường 'art' -->
+                                        <img th:src="@{${p.art}}" alt="Ảnh khóa học" style="width: 100px; height: auto;">
+                                    </td>
+                                    <td th:text="${p.categoriesByCategoriesId != null ? p.categoriesByCategoriesId.name : 'Chưa có danh mục'}"></td>
+                                    <td th:text="${p.price}"></td>
+                                    <td th:text="${p.percentSale}"><p>%</p></td>
+                                    <td class="d-flex">
+                                        <a th:href="@{/admin/course/edit/{id}(id=${p.id})}" class="btn btn-light btn-sm me-2">Sửa</a>
+                                        <a th:href="@{/admin/course/delete/{id}(id=${p.id})}" class="btn btn-light btn-sm">Xóa</a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <div class="card-footer clearfix">
+                            <ul class="pagination pagination-sm m-0 float-end">
+
+                                <li th:each="i: ${#numbers.sequence(1, totalPages)}" class="page-item">
+                                    <a class="page-link" th:href="@{/admin/course/co(page=${i}, s=${s})}" th:text="${i}"></a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div> <!--end::Row-->
+        </div> <!--end::Container-->
+    </div>
+</main>
+
+<th:block th:fragment="otherScripts">
+</th:block>
+</body>
+</html>

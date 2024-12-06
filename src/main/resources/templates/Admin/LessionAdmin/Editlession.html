@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="Layout/LayoutAdmin :: layoutadmin">
+<head>
+  <meta charset="UTF-8">
+  <title>LessionManager</title>
+  <th:block th:fragment="otherCss">
+  </th:block>
+</head>
+<body>
+<main th:fragment="contentadmin">
+  <div class="form-container col-sm-6">
+    <button id="btnCloseForm" class="close-button" onclick="closeForm()">X</button>
+    <h1>Sửa học phần khóa học</h1>
+    <form th:action="@{/admin/lession/save}" th:object="${newlession}" method="post" enctype="multipart/form-data" > <!--begin::Body-->
+      <!-- First column -->
+      <input th:field="*{id}" type="hidden">
+      <div class="row mb-3">
+        <label for="namelession" class="col-form-label">Tên bài học</label>
+        <input type="text" th:field="*{name}"  id="namelession" class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm p-2 text-sm focus:ring-blue-500 focus:border-blue-500">
+      </div>
+      <div class="row mb-3">
+        <label for="filevideo" class="col-form-label">Link bài học</label>
+        <input type="file" name="file" id="filevideo" class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm p-2 text-sm focus:ring-blue-500 focus:border-blue-500">
+      </div>
+      <!-- Second column -->
+
+      <div class="row mb-3">
+        <label class="col-form-label">Tên khóa học</label>
+        <select th:field="*{courseByCourseId.id}" id="course" class="form-control">
+          <option value="">Chọn danh mục học phần</option>
+          <th:block th:each="course: ${courseEntityList}">
+            <option th:value="${course.id}" th:text="${course.name}"></option>
+          </th:block>
+        </select>
+        <div class="row mb-3">
+          <label class="col-form-label">Tên học phần</label>
+          <select th:field="*{coursePartByPartId.id}" id="coursepart" class="form-control">
+            <option value="">Chọn danh mục học phần</option>
+            <th:block th:each="coursepart: ${coursePartEntityList}">
+              <option th:value="${coursepart.id}" th:text="${coursepart.name}"></option>
+            </th:block>
+          </select>
+        </div>
+      </div>
+
+      <!-- Third column -->
+
+      <div class="row mb-3">
+        <label for="legth" class="col-form-label">Thời lượng bài học</label>
+        <input type="text" id="legth" class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm p-2 text-sm focus:ring-blue-500 focus:border-blue-500">
+      </div>
+      <div class="row mb-3">
+        <label for="lecturesnumber" class="col-form-label">Số thứ tự bài học</label>
+        <input type="text" id="lecturesnumber" class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm p-2 text-sm focus:ring-blue-500 focus:border-blue-500">
+      </div>
+      <div class="card-footer">
+        <button type="submit" class="btn-custom btn m-r-10">Lưu</button>
+        <button type="button" class="btn btn-default">Trở lại</button>
+      </div> <!--end::Footer-->
+    </form>
+  </div>
+
+</main>
+<th:block th:fragment="otherScripts">
+</th:block>
+</body>
+</html>

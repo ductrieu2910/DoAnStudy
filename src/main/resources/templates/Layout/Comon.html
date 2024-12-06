@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="frgSubMenu(item)" class="dropdown-menu border-xl shadow-none dropdown-menu-lg" aria-labelledby="navbarCourses">
+  <div class="row gx-0">
+    <!-- Kiểm tra danh sách danh mục cấp 2 -->
+    <div th:if="${item != null and !item.isEmpty()}">
+      <!-- Duyệt qua danh sách cấp 2 -->
+      <div th:each="child : ${item}">
+        <!-- Hiển thị danh mục cấp 2 -->
+        <div class="col-md-4">
+          <a class="dropdown-item" th:href="@{'/Home/category/' + ${child.urlId}}">
+            <span th:text="${child.name}"></span>
+          </a>
+          <!-- Nếu cấp 2 có danh mục con (cấp 3), hiển thị tiếp -->
+          <div th:if="${child.childs != null and !child.childs.isEmpty()}" class="ms-3">
+            <ul>
+              <li th:each="grandChild : ${child.childs}">
+                <a class="dropdown-item" th:href="@{'/Home/category/' + ${grandChild.id}}">
+                  <span th:text="${grandChild.name}"></span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

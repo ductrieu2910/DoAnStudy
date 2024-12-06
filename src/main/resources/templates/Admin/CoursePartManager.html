@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="Layout/LayoutAdmin :: layoutadmin">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:fragment="otherCss"></th:block>
+</head>
+<body>
+<main th:fragment="contentadmin">
+  <div class="app-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card mb-4">
+            <div class="card-header">
+              <h3 class="card-title">Danh sách phần khóa học</h3>
+            </div>
+
+            <!-- Button mở form thêm danh mục -->
+            <div style="margin: 10px">
+              <a href="#" id="btnOpenForm" onclick="openForm()" class="btn btn-success">Thêm mới</a>
+            </div>
+
+            <!-- Popup Form -->
+            <div class="form-popup-bg" id="formPopup" style="display: none;">
+              <div class="form-container col-sm-6">
+                <button id="btnCloseForm" class="close-button" onclick="closeForm()">X</button>
+                <h1>Thêm phần khóa học</h1>
+
+                <form th:action="@{/admin/coursepart/save}" th:object="${newcoursepart}" method="post">
+                  <div class="row mb-3">
+                    <label for="namecoursepart" class="col-form-label">Tên học phần</label>
+                    <input type="text" th:field="*{name}" id="namecoursepart" class="form-control" required />
+                  </div>
+                  <div class="row mb-3">
+                    <label for="coursep" class="col-form-label">Khóa học</label>
+                    <select th:field="*{courseByCourseId.id}" id="coursep" class="form-control">
+                      <option value="">Chọn danh mục</option>
+                      <th:block th:each="course: ${courseEntityList}">
+                        <option th:value="${course.id}" th:text="${course.name}"></option>
+                      </th:block>
+                    </select>
+                  </div>
+                  <!-- Nút Lưu -->
+                  <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeForm()">Hủy</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <!-- Tìm kiếm danh mục -->
+            <div style="margin: 10px">
+              <form th:action="@{/admin/categories/ca}" method="get">
+                <h4 class="col-form-label">Tìm kiếm danh mục</h4>
+                <input type="text" name="s" class="form-control" style="margin: 10px" th:value="${s}">
+                <button class="btn btn-primary">Tìm kiếm</button>
+              </form>
+            </div>
+
+            <!-- Danh sách danh mục -->
+            <table class="table table-bordered" style="margin: 10px">
+              <thead>
+              <tr>
+                <th>Tên học phần</th>
+                <th>Khóa học</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="cp : ${coursepart}" class="align-middle">
+                <td th:text="${cp.name}"></td>
+                <td th:text="${cp.courseByCourseId != null ? cp.courseByCourseId.name : 'Chưa có danh mục'}"></td>
+                <td>
+                  <a th:href="@{/admin/coursepart/edit/{id}(id=${cp.id})}" class="btn btn-light btn-sm me-2">Edit</a>
+                  <a th:href="@{/admin/coursepart/delete/{id}(id=${cp.id})}" class="btn btn-light btn-sm">Delete</a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+
+            <!-- Phân trang -->
+            <div class="card-footer clearfix">
+              <ul class="pagination pagination-sm m-0 float-end">
+                <li th:each="i: ${#numbers.sequence(1, totalPages)}" class="page-item">
+                  <a class="page-link" th:href="@{/admin/coursepart/pa(page=${i}, s=${s})}" th:text="${i}"></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+  <th:block th:fragment="otherScripts"></th:block>
+</body>
+</html>
