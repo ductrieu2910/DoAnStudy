@@ -43,7 +43,7 @@
                                     <div class="row mb-3">
                                         <label for="parent" class="col-form-label">Parent</label>
                                         <select th:field="*{parentId}" id="parent" class="form-control">
-                                            <option value="">-- Chọn danh mục cha --</option>
+                                            <option value="0">-- Chọn danh mục cha --</option>
                                             <option th:each="cat : ${topLevelCategories}"
                                                     th:value="${cat.id}"
                                                     th:text="${cat.name}">

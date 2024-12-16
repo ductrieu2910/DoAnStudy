@@ -69,7 +69,7 @@
 
                             </div>
                             <h6 class="mb-0 ms-3 me-auto text-white">Duration</h6>
-                            <span>43 weeks</span>
+                            <span th:text="${course.duration}"></span>
                         </li>
                         <li class="list-group-item d-flex align-items-center py-3 text-white bg-transparent border-white-10">
                             <div class="text-white d-flex icon-uxs">
@@ -80,7 +80,7 @@
 
                             </div>
                             <h6 class="mb-0 ms-3 me-auto text-white">Lectures</h6>
-                            <span>32</span>
+                            <span th:text="${course.lectures}"></span>
                         </li>
                         <li class="list-group-item d-flex align-items-center py-3 text-white bg-transparent border-white-10">
                             <div class="text-white d-flex icon-uxs">
@@ -93,7 +93,7 @@
 
                             </div>
                             <h6 class="mb-0 ms-3 me-auto text-white">Language</h6>
-                            <span>English</span>
+                            <span th:text="${course.language}"></span>
                         </li>
                         <li class="list-group-item d-flex align-items-center py-3 text-white bg-transparent border-white-10">
                             <div class="text-white d-flex icon-uxs">
@@ -106,7 +106,7 @@
 
                             </div>
                             <h6 class="mb-0 ms-3 me-auto text-white">Skill level</h6>
-                            <span>beginner</span>
+                            <span th:text="${course.skillLevel}"></span>
                         </li>
                         <li class="list-group-item d-flex align-items-center py-3 text-white bg-transparent border-white-10">
                             <div class="text-white d-flex icon-uxs">
@@ -123,7 +123,7 @@
 
                             </div>
                             <h6 class="mb-0 ms-3 me-auto text-white">Deadline</h6>
-                            <span>06 April 2020</span>
+                            <span th:text="${course.deadline}"></span>
                         </li>
                         <li class="list-group-item d-flex align-items-center py-3 text-white bg-transparent border-white-10">
                             <div class="text-white d-flex icon-uxs">
@@ -135,7 +135,7 @@
 
                             </div>
                             <h6 class="mb-0 ms-3 me-auto text-white">Certificate</h6>
-                            <span>Yes</span>
+                            <span th:text="${course.cartificate}"></span>
                         </li>
                         <li class="list-group-item d-flex align-items-center py-4 bg-transparent border-white-10">
                             <a href="#" class="mx-auto text-white fw-medium d-flex align-items-center mt-2">
@@ -155,21 +155,21 @@
                 </div>
 
                 <div class="col-lg-6">
-                    <a href="https://www.youtube.com/watch?v=9I-Y6VQ6tyI" class="d-block sk-thumbnail img-ratio-1 rounded mb-5" data-fancybox>
-                        <div class="h-60p w-60p rounded-circle bg-white size-20-all d-inline-flex align-items-center justify-content-center position-absolute center z-index-1">
-                            <!-- Icon -->
-                            <svg width="14" height="16" viewBox="0 0 14 16" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12.8704 6.15374L3.42038 0.328572C2.73669 -0.0923355 1.9101 -0.109836 1.20919 0.281759C0.508282 0.673291 0.0898438 1.38645 0.0898438 2.18929V13.7866C0.0898438 15.0005 1.06797 15.9934 2.27016 16C2.27344 16 2.27672 16 2.27994 16C2.65563 16 3.04713 15.8822 3.41279 15.6591C3.70694 15.4796 3.79991 15.0957 3.62044 14.8016C3.44098 14.5074 3.05697 14.4144 2.76291 14.5939C2.59188 14.6982 2.42485 14.7522 2.27688 14.7522C1.82328 14.7497 1.33763 14.3611 1.33763 13.7866V2.18933C1.33763 1.84492 1.51713 1.53907 1.81775 1.3711C2.11841 1.20314 2.47294 1.21064 2.76585 1.39098L12.2159 7.21615C12.4999 7.39102 12.6625 7.68262 12.6618 8.01618C12.6611 8.34971 12.4974 8.64065 12.2118 8.81493L5.37935 12.9983C5.08548 13.1783 4.9931 13.5623 5.17304 13.8562C5.35295 14.1501 5.73704 14.2424 6.03092 14.0625L12.8625 9.87962C13.5166 9.48059 13.9081 8.78496 13.9096 8.01868C13.9112 7.25249 13.5226 6.55524 12.8704 6.15374Z" fill="currentColor"/>
-                            </svg>
+                    <a  class="d-block sk-thumbnail img-ratio-1 rounded mb-5" data-fancybox>
+<!--                        <div class="h-60p w-60p rounded-circle bg-white size-20-all d-inline-flex align-items-center justify-content-center position-absolute center z-index-1">-->
+<!--                            &lt;!&ndash; Icon &ndash;&gt;-->
+<!--                            <svg width="14" height="16" viewBox="0 0 14 16" xmlns="http://www.w3.org/2000/svg">-->
+<!--                                <path d="M12.8704 6.15374L3.42038 0.328572C2.73669 -0.0923355 1.9101 -0.109836 1.20919 0.281759C0.508282 0.673291 0.0898438 1.38645 0.0898438 2.18929V13.7866C0.0898438 15.0005 1.06797 15.9934 2.27016 16C2.27344 16 2.27672 16 2.27994 16C2.65563 16 3.04713 15.8822 3.41279 15.6591C3.70694 15.4796 3.79991 15.0957 3.62044 14.8016C3.44098 14.5074 3.05697 14.4144 2.76291 14.5939C2.59188 14.6982 2.42485 14.7522 2.27688 14.7522C1.82328 14.7497 1.33763 14.3611 1.33763 13.7866V2.18933C1.33763 1.84492 1.51713 1.53907 1.81775 1.3711C2.11841 1.20314 2.47294 1.21064 2.76585 1.39098L12.2159 7.21615C12.4999 7.39102 12.6625 7.68262 12.6618 8.01618C12.6611 8.34971 12.4974 8.64065 12.2118 8.81493L5.37935 12.9983C5.08548 13.1783 4.9931 13.5623 5.17304 13.8562C5.35295 14.1501 5.73704 14.2424 6.03092 14.0625L12.8625 9.87962C13.5166 9.48059 13.9081 8.78496 13.9096 8.01868C13.9112 7.25249 13.5226 6.55524 12.8704 6.15374Z" fill="currentColor"/>-->
+<!--                            </svg>-->
 
-                        </div>
-                        <img class="rounded shadow-light-lg" src="assets/img/products/product-23.jpg" alt="...">
+<!--                        </div>-->
+                        <img class="rounded shadow-light-lg" th:src="${course.art}" alt="...">
                     </a>
 
                     <div class="d-flex align-items-center mb-2">
-                        <ins class="h2 mb-0 text-white">$89.99</ins>
-                        <del class="ms-3">339.99</del>
-                        <div class="badge badge-lg badge-purple text-white ms-auto fw-normal">91% Off</div>
+                        <ins class="h2 mb-0 text-white" th:text="${course.price}*(${course.percentSale}/100)"></ins>
+                        <del class="ms-3" th:text="${course.price}"></del>
+                        <div class="badge badge-lg badge-purple text-white ms-auto fw-normal" th:text="${course.percentSale}"><p>%</p></div>
                     </div>
 
                     <div class="d-flex align-items-center mb-6">
@@ -188,7 +188,7 @@
 
                     <div class="d-md-flex">
                         <button class="btn btn-blue btn-wide mb-4 mb-md-0 me-md-3 flex-grow-1" type="button" name="button">BUY NOW</button>
-                        <button class="btn btn-orange btn-wide mb-4 mb-md-0 ms-md-3 flex-grow-1" type="button" name="button">ENROLL</button>
+                        <a class="btn btn-orange btn-wide mb-4 mb-md-0 ms-md-3 flex-grow-1" th:href="@{}" type="button" name="button">Start Lession</a>
                     </div>
                 </div>
             </div>

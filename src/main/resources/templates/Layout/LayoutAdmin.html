@@ -23,35 +23,7 @@
                         class="bi bi-list"></i> </a></li>
             </ul> <!--end::Start Navbar Links--> <!--begin::End Navbar Links-->
             <ul class="navbar-nav ms-auto">
-                <!--begin::Fullscreen Toggle-->
-                <li class="nav-item"><a class="nav-link" href="#" data-lte-toggle="fullscreen"> <i
-                        data-lte-icon="maximize" class="bi bi-arrows-fullscreen"></i> <i data-lte-icon="minimize"
-                                                                                         class="bi bi-fullscreen-exit"
-                                                                                         style="display: none;"></i>
-                </a></li> <!--end::Fullscreen Toggle--> <!--begin::User Menu Dropdown-->
-                <li class="nav-item dropdown user-menu"><a href="#" class="nav-link dropdown-toggle"
-                                                           data-bs-toggle="dropdown"> <img src=""
-                                                                                           class="user-image rounded-circle shadow"
-                                                                                           alt="User Image"> <span
-                        class="d-none d-md-inline">Alexander Pierce</span> </a>
-                    <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end"> <!--begin::User Image-->
-                        <li class="user-header text-bg-primary"><img src="" class="rounded-circle shadow"
-                                                                     alt="User Image">
-                            <p>
-                                Alexander Pierce - Web Developer
-                                <small>Member since Nov. 2023</small>
-                            </p>
-                        </li> <!--end::User Image-->
-                        <!--begin::Menu Footer-->
-                        <li class="user-footer">
-                            <a href="#" class="btn btn-default btn-flat">Profile</a>
-                            <form style="display: none" action="/admin/logout" id="frmLogout" method="post"></form>
-                            <a href="javascript:void(0)" onclick="document.getElementById('frmLogout').submit()"
-                               class="btn btn-default btn-flat float-end">Sign out</a>
-                        </li>
-                        <!--end::Menu Footer-->
-                    </ul>
-                </li> <!--end::User Menu Dropdown-->
+                <a th:href="@{/admin/logout}" onclick="logout();"><i class="fa-solid fa-right-from-bracket"></i></i> Đăng xuất</a>
             </ul> <!--end::End Navbar Links-->
         </div> <!--end::Container-->
     </nav>
@@ -99,30 +71,30 @@
                         </p>
                     </a>
                     </li>
-                    <li class="nav-item"><a href="#" class="nav-link"> <i class="nav-icon bi bi-tree-fill"></i>
-                        <p>
-                            Quản lý review
-                        </p>
-                    </a>
-                    </li>
-                    <li class="nav-item"><a href="#" class="nav-link"> <i class="nav-icon bi bi-pencil-square"></i>
-                        <p>
-                            Quản lý Blog
-                        </p>
-                    </a>
-                    </li>
+<!--                    <li class="nav-item"><a href="#" class="nav-link"> <i class="nav-icon bi bi-tree-fill"></i>-->
+<!--                        <p>-->
+<!--                            Quản lý review-->
+<!--                        </p>-->
+<!--                    </a>-->
+<!--                    </li>-->
+<!--                    <li class="nav-item"><a href="#" class="nav-link"> <i class="nav-icon bi bi-pencil-square"></i>-->
+<!--                        <p>-->
+<!--                            Quản lý Blog-->
+<!--                        </p>-->
+<!--                    </a>-->
+<!--                    </li>-->
                     <li class="nav-item"><a href="#" class="nav-link"> <i class="nav-icon bi bi-table"></i>
                         <p>
                             Quản lý Tài khoản
                         </p>
                     </a>
                     </li>
-                    <li class="nav-item"><a href="#" class="nav-link"> <i class="nav-icon bi bi-table"></i>
-                        <p>
-                            Quản lý Event
-                        </p>
-                    </a>
-                    </li>
+<!--                    <li class="nav-item"><a href="#" class="nav-link"> <i class="nav-icon bi bi-table"></i>-->
+<!--                        <p>-->
+<!--                            Quản lý Event-->
+<!--                        </p>-->
+<!--                    </a>-->
+<!--                    </li>-->
 <!--                    <li class="nav-item"><a href="#" class="nav-link"> <i class="nav-icon bi bi-table"></i>-->
 <!--                        <p>-->
 <!--                            Quản lý giảng viên-->

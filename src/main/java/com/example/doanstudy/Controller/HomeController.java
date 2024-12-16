@@ -7,16 +7,16 @@ import com.example.doanstudy.model.entity.CourseEntity;
 import com.example.doanstudy.repository.CategoriesRepository;
 import com.example.doanstudy.service.CategoriesService;
 import com.example.doanstudy.service.CourseService;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.List;
@@ -56,4 +56,38 @@ public class HomeController {
         return "Pages/Course/CourseDetails";
     }
 
+    @GetMapping("/loginT1")
+    public  String GetLogin(Model model){
+        List<CategoriesEntity> parentCategories = categoriesService.findAllByParentIdIsNull();
+        model.addAttribute("parentCategories", parentCategories);
+        List<CategoriesDTO> categoriesDTOList = categoriesService.categoriesDTOList();
+        model.addAttribute("categoriesDTOList",categoriesDTOList);
+        return "User/LoginUsers";
+    }
+
+    @PostMapping("/loginT1")
+    public String login(@RequestParam("username") String username, @RequestParam("password") String password, HttpServletResponse response, Model model) {
+        if ("customer".equals(username) && "12345".equals(password)) {
+            Cookie cookie = new Cookie(Constants.LOGIN_CUSTOMER, username);
+            cookie.setMaxAge(60 * 5);
+            cookie.setHttpOnly(true);
+            cookie.setSecure(true);
+            response.addCookie(cookie);
+            return "redirect:/Home/T1";
+        }
+        return "redirect:/Home/loginT1";
+    }
+
+    @GetMapping("/logoutT1")
+    public String logout(HttpServletRequest request, HttpServletResponse response) {
+        Cookie[] cookies = request.getCookies();
+        for (Cookie c : cookies) {
+            if (Constants.LOGIN_CUSTOMER.equals(c.getName())) {
+                c.setMaxAge(0);
+                response.addCookie(c);
+                break;
+            }
+        }
+        return "redirect:/Home/loginT1";
+    }
 }

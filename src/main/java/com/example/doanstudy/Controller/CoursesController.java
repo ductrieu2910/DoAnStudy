@@ -12,4 +12,5 @@ public class CoursesController {
         return "Pages/Courses/CoursesList";
     }
 
+
 }
